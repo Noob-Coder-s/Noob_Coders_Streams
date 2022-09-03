@@ -2,9 +2,9 @@
 
 namespace _9_1_10_Spider
 {
-	class Program
-	{
-		static void Main(string[] args)
+    class Program
+    {
+        static void Main(string[] args)
         {
             var s1 = Console.ReadLine().Split(' ');
             var s2 = Console.ReadLine().Split(' ');
@@ -30,7 +30,6 @@ namespace _9_1_10_Spider
                 Console.WriteLine("Муха должна быть на полу!");
         }
     }
-	}
 
     public class Fly
     {
@@ -45,7 +44,7 @@ namespace _9_1_10_Spider
         public double coordinateY;
         public double coordinateZ;
     }
-    
+
     public class Calculations
     {
         public static double GetDistance(Fly fly, Spider spider) =>
@@ -56,4 +55,5 @@ namespace _9_1_10_Spider
            Math.Sqrt(Math.Pow(spider.coordinateX - fly.coordinateX, 2) +
                 Math.Pow(spider.coordinateY - fly.coordinateY, 2)) + (spider.coordinateZ - fly.coordinateZ);
     }
+
 }
