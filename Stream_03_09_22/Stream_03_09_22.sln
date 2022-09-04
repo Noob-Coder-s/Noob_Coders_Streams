@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9_2_6_Matrix", "9_2_6_Matri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10_1_9_Money", "10_1_9_Money\10_1_9_Money.csproj", "{38B3191A-8D45-4CC2-8B3B-D2D846022162}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gauss", "Gauss\Gauss.csproj", "{7FA69BC5-9633-4B08-88CA-5976134BFC45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{38B3191A-8D45-4CC2-8B3B-D2D846022162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B3191A-8D45-4CC2-8B3B-D2D846022162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B3191A-8D45-4CC2-8B3B-D2D846022162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA69BC5-9633-4B08-88CA-5976134BFC45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA69BC5-9633-4B08-88CA-5976134BFC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA69BC5-9633-4B08-88CA-5976134BFC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA69BC5-9633-4B08-88CA-5976134BFC45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
