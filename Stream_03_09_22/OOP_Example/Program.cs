@@ -68,13 +68,22 @@ namespace OOP_Example
 			if (!route.AvailableTransportTypes.Contains(transportType))
 				throw new ArgumentException("The selected route does not support the specified transport type");
 
-			var costPerKilometer = (transportType, route.International) switch
+			decimal costPerKilometer;
+
+			if (transportType == TransportType.Airplane)
 			{
-				(TransportType.Airplane, true) => 200M,
-				(TransportType.Airplane, false) => 150M,
-				(TransportType.Train, true) => 100M,
-				_ => 50M
-			};
+				if (route.International)
+					costPerKilometer = 200M;
+				else
+					costPerKilometer = 150M;
+			}
+			else
+			{
+				if (route.International)
+					costPerKilometer = 100M;
+				else
+					costPerKilometer = 50M;
+			}
 
 			var tiketCost = route.Length * costPerKilometer;
 
