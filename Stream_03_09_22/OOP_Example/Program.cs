@@ -63,7 +63,7 @@ namespace OOP_Example
 				throw new KeyNotFoundException("There is no such client");
 
 			if (!Routes.TryGetValue(routeId, out var route))
-				throw new KeyNotFoundException("There is no such client");
+				throw new KeyNotFoundException("There is no such route");
 
 			if (!route.AvailableTransportTypes.Contains(transportType))
 				throw new ArgumentException("The selected route does not support the specified transport type");
