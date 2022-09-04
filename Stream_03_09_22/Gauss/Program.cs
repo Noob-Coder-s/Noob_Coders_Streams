@@ -6,9 +6,17 @@ namespace Gauss
 	{
         static void Main(string[] args)
         {
-            //x + 3y + 2z = 19
-            //4x + y - 4z = 9
-            //10x - 2y + z = 11
+            //x   + 3y + 2z = 19
+            //4x  +  y - 4z = 9
+            //10x - 2y +  z = 11
+
+            //x   + 3y + 2z = 19
+            //0x  -11y - 12z = -67
+            //0x - 2y +  z = 11
+
+            //x  + 3y + 2z = D1
+            // Ay + Bz = D2
+            // Cz = D3
 
             var free = new double[3]
             {

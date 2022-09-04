@@ -8,20 +8,20 @@ namespace _9_1_10_Spider
         {
             var s1 = Console.ReadLine().Split(' ');
             var s2 = Console.ReadLine().Split(' ');
-            var fly = new Fly
+            var fly = new Point
             {
-                coordinateX = double.Parse(s1[0]),
-                coordinateY = double.Parse(s1[1]),
-                coordinateZ = double.Parse(s1[2]),
+                CoordinateX = double.Parse(s1[0]),
+                CoordinateY = double.Parse(s1[1]),
+                CoordinateZ = double.Parse(s1[2]),
             };
-            var spider = new Spider
+            var spider = new Point
             {
-                coordinateX = double.Parse(s2[0]),
-                coordinateY = double.Parse(s2[1]),
-                coordinateZ = double.Parse(s2[2]),
+                CoordinateX = double.Parse(s2[0]),
+                CoordinateY = double.Parse(s2[1]),
+                CoordinateZ = double.Parse(s2[2]),
             };
 
-            if (fly.coordinateZ == 0)
+            if (fly.CoordinateZ == 0)
             {
                 Console.WriteLine("Расстояние: {0:0.#####}", Calculations.GetDistance(fly, spider));
                 Console.WriteLine("Путь: {0:0.#####}", Calculations.GetWay(fly, spider));
@@ -31,29 +31,22 @@ namespace _9_1_10_Spider
         }
     }
 
-    public class Fly
+    public class Point
     {
-        public double coordinateX;
-        public double coordinateY;
-        public double coordinateZ;
-    }
-
-    public class Spider
-    {
-        public double coordinateX;
-        public double coordinateY;
-        public double coordinateZ;
+        public double CoordinateX { get; set; }
+        public double CoordinateY { get; set; }
+        public double CoordinateZ { get; set; }
     }
 
     public class Calculations
     {
-        public static double GetDistance(Fly fly, Spider spider) =>
-           Math.Sqrt(Math.Pow(spider.coordinateX - fly.coordinateX, 2) +
-                Math.Pow(spider.coordinateY - fly.coordinateY, 2) +
-                Math.Pow(spider.coordinateZ - fly.coordinateZ, 2));
-        public static double GetWay(Fly fly, Spider spider) =>
-           Math.Sqrt(Math.Pow(spider.coordinateX - fly.coordinateX, 2) +
-                Math.Pow(spider.coordinateY - fly.coordinateY, 2)) + (spider.coordinateZ - fly.coordinateZ);
+        public static double GetDistance(Point fly, Point spider) =>
+           Math.Sqrt(Math.Pow(spider.CoordinateX - fly.CoordinateX, 2) +
+                Math.Pow(spider.CoordinateY - fly.CoordinateY, 2) +
+                Math.Pow(spider.CoordinateZ - fly.CoordinateZ, 2));
+        public static double GetWay(Point fly, Point spider) =>
+           Math.Sqrt(Math.Pow(spider.CoordinateX - fly.CoordinateX, 2) +
+                Math.Pow(spider.CoordinateY - fly.CoordinateY, 2)) + (spider.CoordinateZ - fly.CoordinateZ);
     }
 
 }

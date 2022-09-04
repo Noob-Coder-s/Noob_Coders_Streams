@@ -6,30 +6,8 @@ namespace _10_1_9_Money
     {
         private readonly string _rubles = "р.";
         private readonly string _kopecks = "коп.";
-        private int _numberOfRubles;
-        private int _numberOfKopecks;
 
-        public int NumberOfRubles
-        {
-            get { return _numberOfRubles; }
-            set { _numberOfRubles = value; }
-        }
-        public int NumberOfKopecks
-        {
-            get { return _numberOfKopecks; }
-            set
-            {
-                if (value > 99)
-                {
-                    NumberOfRubles += value / 100; //сломает класс. Потому что обязывает устанавливать значение NumberOfRubles до NumberOfKopecks. Так делать нельзя
-                    _numberOfKopecks = value % 100;
-                }
-                else
-                {
-                    _numberOfKopecks = value;
-                }
-            }
-        }
+        public int NumberOfKopecks { get; set; }
 
         public Money() { }
 
@@ -40,7 +18,7 @@ namespace _10_1_9_Money
             if (number < 0)
                 PrintMustNotBeNegative();
             else if (meaning == _rubles)
-                NumberOfRubles = number;
+                NumberOfKopecks = number * 100;
             else
                 NumberOfKopecks = number;
         }
@@ -56,8 +34,7 @@ namespace _10_1_9_Money
                 PrintMustNotBeNegative();
             else
             {
-                NumberOfRubles = tempNumberOfRubles;
-                NumberOfKopecks = tempNumberOfKopecks;
+                NumberOfKopecks = tempNumberOfRubles * 100 + tempNumberOfKopecks;
             }
         }
 
@@ -65,7 +42,6 @@ namespace _10_1_9_Money
         {
             var newMoney = new Money
             {
-                NumberOfRubles = a.NumberOfRubles + b.NumberOfRubles,
                 NumberOfKopecks = a.NumberOfKopecks + b.NumberOfKopecks
             };
             return newMoney;
@@ -75,28 +51,25 @@ namespace _10_1_9_Money
         {
             var newMoney = new Money
             {
-                NumberOfRubles = a.NumberOfRubles - b.NumberOfRubles,
                 NumberOfKopecks = a.NumberOfKopecks - b.NumberOfKopecks
             };
-            if (newMoney.NumberOfRubles > 0 && newMoney.NumberOfKopecks < 0)
-            {
-                newMoney.NumberOfRubles -= 1;
-                newMoney.NumberOfKopecks += 100;
-            }
             return newMoney;
         }
 
         public void Print()
         {
-            if (NumberOfRubles == 0 && NumberOfKopecks != 0)
-                Console.WriteLine($"{NumberOfKopecks} {_kopecks}");
+            var numberOfKopecks = NumberOfKopecks % 100;
+            var numberOfRubles = NumberOfKopecks / 100;
+
+            if (numberOfRubles == 0 && numberOfKopecks != 0)
+                Console.WriteLine($"{numberOfKopecks} {_kopecks}");
             else
-                Console.WriteLine($"{NumberOfRubles} {_rubles} {NumberOfKopecks} {_kopecks}");
+                Console.WriteLine($"{numberOfRubles} {_rubles} {numberOfKopecks} {_kopecks}");
         }
 
         public void PrintTransferCost(double x)
         {
-            double totalAmountOfKopecks = NumberOfRubles * 100 + NumberOfKopecks;
+            double totalAmountOfKopecks = NumberOfKopecks;
             totalAmountOfKopecks *= (x + 1);
             var ruble = (int)totalAmountOfKopecks / 100;
             var kopeck = (int)Math.Round(totalAmountOfKopecks % 100);

@@ -68,34 +68,87 @@ namespace OOP_Example
 			if (!route.AvailableTransportTypes.Contains(transportType))
 				throw new ArgumentException("The selected route does not support the specified transport type");
 
-			decimal costPerKilometer;
+			IBaseCostProvider baseCostProvider;
 
 			if (transportType == TransportType.Airplane)
-			{
-				if (route.International)
-					costPerKilometer = 200M;
-				else
-					costPerKilometer = 150M;
-			}
+				baseCostProvider = new AirplaneBaseCostProvider(route);
 			else
-			{
-				if (route.International)
-					costPerKilometer = 100M;
-				else
-					costPerKilometer = 50M;
-			}
+				baseCostProvider = new TrainBaseCostProvider(route);
 
-			var tiketCost = route.Length * costPerKilometer;
+			IDiscountProvider discountProvider = new ComplexDiscountProvider(
+				new AgeDiscountProvider(client),
+				new SocialStatusDiscountProvider(client)
+				);
 
-			if (client.Age <= 3)
-				tiketCost *= 0M;
-			else if (client.Age <= 14)
-				tiketCost *= 0.5M;
+			var calculator = new TicketCostCalculator(baseCostProvider, discountProvider);
 
-			if (client.Pensionary)
-				tiketCost *= 0.75M;
+			var tiketCost = calculator.GetTotalTicketCost();
+
+			//decimal costPerKilometer;
+
+			//if (transportType == TransportType.Airplane)
+			//{
+			//	if (route.International)
+			//		costPerKilometer = 200M;
+			//	else
+			//		costPerKilometer = 150M;
+			//}
+			//else
+			//{
+			//	if (route.International)
+			//		costPerKilometer = 100M;
+			//	else
+			//		costPerKilometer = 50M;
+			//}
+
+			//var tiketCost = route.Length * costPerKilometer;
+
+			//if (client.Age <= 3)
+			//	tiketCost *= 0M;
+			//else if (client.Age <= 14)
+			//	tiketCost *= 0.5M;
+
+			//if (client.Pensionary)
+			//	tiketCost *= 0.75M;
 
 			Console.WriteLine($"The ticket will cost {tiketCost} rubles");
 		}
 	}
+
+	class MyObject
+	{
+		public static int Counter { get; set; }
+
+		public int ID { get; set; }
+		public string Name { get; set; }
+	}
+
+	static class CalculationLogic
+	{
+		public static int CalculateMyCompanyIndexAndChangeName(this int number, MyObject obj)
+		{
+			obj.Name = "NewName";
+			return number + 1;
+		}
+	}
+
+	class InheritanceExample
+	{
+		private readonly int parameter;
+
+		public InheritanceExample()
+		{
+
+		}
+		public InheritanceExample(int parameter)
+		{
+			this.parameter = parameter;
+		}
+	}
+
+	class Child : InheritanceExample
+	{ 
+		
+	}
 }
+
